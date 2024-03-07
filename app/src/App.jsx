@@ -3,13 +3,24 @@ import tw from "tailwind-styled-components";
 import SearchResult from "./components/SearchResults/SearchResult";
 import { useEffect, useState } from "react";
 
-// {
-//     "name": "Boilded Egg",
-//     "price": 10,
-//     "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-//     "image": "/images/egg.png",
-//     "type": "breakfast"
-// }
+const btn = [
+  {
+    name: "All",
+    type: "all",
+  },
+  {
+    name: "Breakfast",
+    type: "breakfast",
+  },
+  {
+    name: "Lunch",
+    type: "lunch",
+  },
+  {
+    name: "Dinner",
+    type: "dinner",
+  },
+];
 
 export const BASE_URL = "http://localhost:9000";
 export default function App() {
@@ -17,6 +28,7 @@ export default function App() {
   const [filterdata, setfilterdata] = useState();
   const [loading, setloading] = useState(false);
   const [error, setError] = useState();
+  const [type, settype] = useState("all");
   useEffect(() => {
     const fetchFoodData = async () => {
       setloading(true);
@@ -35,6 +47,18 @@ export default function App() {
     };
     fetchFoodData();
   }, []);
+
+  const typesearch = (type) => {
+    if (type === "all") {
+      setfilterdata(getvalue);
+      settype("all");
+      return;
+    }
+    const filter = getvalue?.filter((food) =>
+      food.type.toLowerCase().includes(type)
+    );
+    setfilterdata(filter);
+  };
 
   const searchfood = (e) => {
     e.preventDefault();
@@ -67,18 +91,14 @@ export default function App() {
           </div>
         </TopContainer>
         <div className=" text-center ">
-          <button className="bg-red-500 w-20 m-2  p-1 rounded-md font-bold">
-            All
-          </button>
-          <button className="bg-red-500 w-20 m-2 p-1 rounded-md font-bold">
-            Breakfast
-          </button>
-          <button className="bg-red-500 m-2 w-20 p-1 rounded-md font-bold">
-            Lunch
-          </button>
-          <button className="bg-red-500 m-2 w-20 p-1 rounded-md font-bold">
-            Dinner
-          </button>
+          {btn.map((name) => (
+            <button
+              onClick={() => typesearch(name.type)}
+              className="bg-red-500 w-20 m-2  p-1 rounded-md font-bold"
+            >
+              {name.name}
+            </button>
+          ))}
         </div>
       </MainContainer>
       {loading ? "Loading..." : <SearchResult data={filterdata} />}
