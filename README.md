@@ -8,6 +8,12 @@
 ## <a name="introduction"> 😀 Introduction </a>
 
 It's a single page application it's has only one page,
+it's fully responsive the laptop size picture is below
+![image](https://github.com/hi-chandan/foodyhub/assets/125797501/43fa5060-9599-4b03-9e01-3b219726c6a9)
+
+The mobile screen size is below
+
+![image](https://github.com/hi-chandan/foodyhub/assets/125797501/f93d112d-e69e-45d5-a013-006618ed1616)
 
 ## <a name="tech-stack"> ⚙️ Tech Stack </a>
 

@@ -16,7 +16,7 @@ const SearchResult = ({ data }) => {
         {data?.map((food) => (
           <div
             key={food.name}
-            className="bg-[#3F3B38] flex w-[360px] rounded-lg "
+            className="bg-[#3F3B38] p-1 flex w-[360px] rounded-lg "
           >
             <img src={BASE_URL + food.image} alt="" />
             <div className="">
