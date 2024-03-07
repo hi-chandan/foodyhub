@@ -7,6 +7,13 @@
 
 ## <a name="introduction"> 😀 Introduction </a>
 
+It has frontend and backend frontend is in app folder where people can use (npm run dev ) command.
+
+In the backend (npm start) command .
+
+All the data is in the website coming from backend through
+API
+
 It's a single page application it's has only one page,
 it's fully responsive the laptop size picture is below
 ![image](https://github.com/hi-chandan/foodyhub/assets/125797501/43fa5060-9599-4b03-9e01-3b219726c6a9)
