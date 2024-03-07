@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 export const BASE_URL = "http://localhost:9000";
 export default function App() {
   const [getvalue, setvalue] = useState();
+  const [filterdata, setfilterdata] = useState();
   const [loading, setloading] = useState(false);
   const [error, setError] = useState();
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function App() {
         const json = await response.json();
 
         setvalue(json);
+        setfilterdata(json);
         setloading(false);
       } catch (error) {
         setError("Unable to fetch data");
@@ -33,6 +35,21 @@ export default function App() {
     };
     fetchFoodData();
   }, []);
+
+  const searchfood = (e) => {
+    e.preventDefault();
+    const getfilterdata = e.target.value;
+    console.log("this is search", getfilterdata);
+
+    if (getfilterdata === "") {
+      setfilterdata(null);
+    }
+    const filter = getvalue?.filter((food) =>
+      food.name.toLowerCase().includes(getfilterdata)
+    );
+
+    setfilterdata(filter);
+  };
   console.log("This is loading value", loading);
   if (error) return <div>{error}</div>;
   return (
@@ -44,6 +61,7 @@ export default function App() {
             <input
               type="text"
               className="p-2 rounded-lg text-white bg-transparent border-2 border-red-600"
+              onChange={(e) => searchfood(e)}
               placeholder="Search Food..."
             />
           </div>
@@ -63,7 +81,7 @@ export default function App() {
           </button>
         </div>
       </MainContainer>
-      {loading ? "Loading..." : <SearchResult data={getvalue} />}
+      {loading ? "Loading..." : <SearchResult data={filterdata} />}
     </>
   );
 }

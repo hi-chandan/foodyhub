@@ -11,19 +11,20 @@ import { BASE_URL } from "../../App";
 
 const SearchResult = ({ data }) => {
   return (
-    <section className="bg-[url('/bg.png')] bg-cover h-[685px] bg-no-repeat border-2 border-red-600 w-screen flex justify-center items-center">
-      <div className="flex flex-wrap w-3/4 gap-4">
+    <section className="bg-[url('/bg.png')] bg-cover h-full sm:h-screen  w-screen flex justify-center items-start mt-4 bg-repeat-y ">
+      <div className="h-3/6 w-full sm:w-4/5 flex flex-wrap   justify-center items-start mt-14 gap-4 p-2">
         {data?.map((food) => (
-          <div className=" ">
-            <div className="bg-[#403730] flex w-[360px] h-[180px] p-2 ">
-              <img src={BASE_URL + food.image} alt="" />
-              <div className="">
-                <h1>{food.name}</h1>
-                <p>{food.text}</p>
-                <button className="bg-red-600 p-1 w-16 float-right  m-2 rounded-lg">
-                  {food.price}
-                </button>
-              </div>
+          <div
+            key={food.name}
+            className="bg-[#3F3B38] flex w-[360px] rounded-lg "
+          >
+            <img src={BASE_URL + food.image} alt="" />
+            <div className="">
+              <h1>{food.name}</h1>
+              <p>{food.text}</p>
+              <button className="bg-red-600 p-1 w-16 float-right  m-2 rounded-lg">
+                {food.price}
+              </button>
             </div>
           </div>
         ))}
